@@ -1,0 +1,150 @@
+spring:
+  application:
+    name: safe-places-app
+
+  # Thymeleaf Configuration
+  thymeleaf:
+    cache: false # Disable caching in development
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+  # MongoDB Configuration
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/safeplaces
+      auto-index-creation: true
+      authentication-database: admin # If using auth
+
+  # Web Configuration
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+
+
+  # Actuator Configuration
+  actuator:
+    metrics:
+      export:
+        prometheus:
+          enabled: true
+
+# SpringDoc OpenAPI/Swagger Configuration
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    doc-expansion: none
+    persist-authorization: true
+    filter: true
+    display-request-duration: true
+    try-it-out-enabled: true
+    urls:
+      - url: /v3/api-docs
+        name: Safe Places API
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: true
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  show-actuator: true
+  cache:
+    disabled: true # Disable for development
+  api-info:
+    title: Safe Places API
+    version: 1.0.0
+    description: API for managing safe locations and reviews
+    contact:
+      name: API Support
+      url: https://example.com/support
+      email: support@safeplaces.com
+    license:
+      name: MIT License
+      url: https://opensource.org/licenses/MIT
+
+# Management Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /management
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      group:
+        custom:
+          include: diskSpace,ping,mongo
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path:
+    application-display-name: Safe Places
+  error:
+    include-message: always
+    include-stacktrace: on_param
+    include-binding-errors: always
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+  ssl:
+    enabled: ${app.features.security.require-ssl:false}
+
+# Custom Application Properties
+app:
+  features:
+    map:
+      api-key: ${MAPBOX_API_KEY:your-mapbox-api-key} # For map integration
+      default-zoom: 14
+      default-location:
+        lat: 40.7128
+        lng: -74.0060
+    security:
+      require-ssl: ${REQUIRE_SSL:false}
+      cors:
+        allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8080}
+        allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    rate-limiting:
+      enabled: true
+      capacity: 100
+      refill-rate: 10
+    cache:
+      enabled: true
+      ttl-minutes: 30
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
+    com.example.safeplaces: DEBUG
+  file:
+    name: logs/safe-places.log
+    max-size: 10MB
+    max-history: 7
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+  logging:
+    level:
+      com:
+        example:
+          safeplaces=DEBUG:

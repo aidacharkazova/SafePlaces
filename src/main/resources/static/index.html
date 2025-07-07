@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Places - Find Your Safe Zone</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <h1>Safe Places</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="createLocation.html">Add New Place</a>
+    </nav>
+</header>
+
+<main>
+    <section class="search-section">
+        <h2>Find a Safe Place</h2>
+        <form id="searchForm">
+            <div class="form-group">
+                <label for="type">Type:</label>
+                <select id="type" name="type">
+                    <option value="">All</option>
+                    <option value="cafe">Cafe</option>
+                    <option value="park">Park</option>
+                    <option value="library">Library</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="mall">Mall</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="minRating">Minimum Rating:</label>
+                <input type="number" id="minRating" name="minRating" min="0" max="5" step="0.1">
+            </div>
+            <div class="form-group">
+                <label for="addressQuery">Name/Address Keywords:</label>
+                <input type="text" id="addressQuery" name="address">
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section class="results-section">
+        <h2>Search Results</h2>
+        <div id="searchResults" class="location-list">
+            <p>No locations found yet. Try searching!</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Safe Places</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
