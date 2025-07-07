@@ -1,4 +1,4 @@
-package com.example.safeplaces.dto;
+package com.example.safeplaces.exception;
 
 import lombok.Data;
 import java.time.LocalDateTime;

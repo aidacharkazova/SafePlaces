@@ -1,6 +1,5 @@
 package com.example.safeplaces.exception;
 
-import com.example.safeplaces.dto.ErrorResponse;
 import com.example.safeplaces.exception.custom.DuplicateResourceException;
 import com.example.safeplaces.exception.custom.InvalidRequestException;
 import com.example.safeplaces.exception.custom.ResourceNotFoundException;
