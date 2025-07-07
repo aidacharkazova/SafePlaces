@@ -33,8 +33,7 @@ dependencies {
     // Frontend Development
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    // Security (Optional)
-    // implementation 'org.springframework.boot:spring-boot-starter-security'
+
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
