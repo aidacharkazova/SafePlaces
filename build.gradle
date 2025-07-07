@@ -63,7 +63,3 @@ task frontendBuild(type: Copy) {
     into 'src/main/resources/static'
     // dependsOn ':frontend:build' // Uncomment if you have frontend project
 }
-
-processResources {
-    // dependsOn frontendBuild // Uncomment if using frontend build task
-}
